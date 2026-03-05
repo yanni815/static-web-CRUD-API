@@ -1,5 +1,9 @@
 package edu.uncg.character_api.repository;
 
-public class CharacterRepository {
-    
+import edu.uncg.character_api.model.Character;
+import org.springframework.data.jpa.repository.JpaRepository;
+public interface CharacterRepository extends JpaRepository<Character, Long> {
+
+
 }
+
