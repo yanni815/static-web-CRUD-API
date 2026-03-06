@@ -22,7 +22,7 @@ public class CharacterController {
         return repository.findAll();
     }
 
-     @GetMapping("/{id}")
+    @GetMapping("/{id}")
     public Character getCharacterById(@PathVariable Long id){
         return repository.findById(id).orElse(null);
     }
@@ -33,7 +33,7 @@ public class CharacterController {
     }
 
 
-      @GetMapping("/category")
+    @GetMapping("/category")
     public List <Character> getCharacterByCategory(@PathVariable String category){
         return repository.findByCategoryIgnoreCase(category);
     }
