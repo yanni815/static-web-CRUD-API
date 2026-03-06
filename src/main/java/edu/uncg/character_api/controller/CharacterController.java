@@ -27,6 +27,16 @@ public class CharacterController {
         return repository.findById(id).orElse(null);
     }
 
+      @GetMapping("/search")
+    public List <Character> searchCharacters(@RequestParam String name){
+        return repository.findByNameContainingIgnoreCase(name);
+    }
+
+
+      @GetMapping("/category/{category}")
+    public List <Character> getCharacterByCategory(@PathVariable String category){
+        return repository.findByCategoryIgnoreCase(category);
+    }
     @PostMapping
     public Character addCharacter(@RequestBody Character character){
          return repository.save(character);
