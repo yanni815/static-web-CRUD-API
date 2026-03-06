@@ -7,11 +7,11 @@ import edu.uncg.character_api.model.AnimeCharacter;
 import edu.uncg.character_api.repository.AnimeCharacterRepository;
 
 @Service
-public class CharacterService {
+public class AnimeCharacterService {
 
     private final AnimeCharacterRepository repository;
 
-    public CharacterService(AnimeCharacterRepository repository) {
+    public AnimeCharacterService(AnimeCharacterRepository repository) {
         this.repository = repository;
     }
 

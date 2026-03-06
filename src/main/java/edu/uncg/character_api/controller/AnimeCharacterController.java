@@ -1,7 +1,7 @@
 package edu.uncg.character_api.controller;
 
 import edu.uncg.character_api.model.AnimeCharacter;
-import edu.uncg.character_api.service.CharacterService;
+import edu.uncg.character_api.service.AnimeCharacterService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,11 +9,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/characters")
-public class CharacterController {
+public class AnimeCharacterController {
 
-    private final CharacterService service;
+    private final AnimeCharacterService service;
 
-    public CharacterController(CharacterService service){
+    public AnimeCharacterController(AnimeCharacterService service){
         this.service = service;
     }
 
