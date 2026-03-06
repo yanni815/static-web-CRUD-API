@@ -1,6 +1,6 @@
 package edu.uncg.character_api.controller;
 
-import edu.uncg.character_api.model.Character;
+import edu.uncg.character_api.model.AnimeCharacter;
 import edu.uncg.character_api.service.CharacterService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,32 +18,32 @@ public class CharacterController {
     }
 
     @GetMapping
-    public List<Character> getAllCharacters(){
+    public List<AnimeCharacter> getAllCharacters(){
         return service.getAllCharacters();
     }
 
     @GetMapping("/{id}")
-    public Character getCharacterById(@PathVariable Long id){
+    public AnimeCharacter getCharacterById(@PathVariable Long id){
         return service.getCharacterById(id);
     }
 
       @GetMapping("/search")
-    public List <Character> searchCharacters(@RequestParam String name){
+    public List <AnimeCharacter> searchCharacters(@RequestParam String name){
         return service.searchbyName(name);
     }
 
 
     @GetMapping("/characters/category/{category}")
-    public List <Character> getCharacterByCategory(@PathVariable String anime){
+    public List <AnimeCharacter> getCharacterByCategory(@PathVariable String anime){
         return service.getbyAnime(anime);
     }
     @PostMapping
-    public Character addCharacter(@RequestBody Character character){
+    public AnimeCharacter addCharacter(@RequestBody AnimeCharacter character){
          return service.createCharacter(character);
     }
 
 @PutMapping("/{id}")
-public Character updateCharacter(@PathVariable Long id, @RequestBody Character character){
+public AnimeCharacter updateCharacter(@PathVariable Long id, @RequestBody AnimeCharacter character){
     character.setId(id);
     return service.updateCharacter(id,character);
 }

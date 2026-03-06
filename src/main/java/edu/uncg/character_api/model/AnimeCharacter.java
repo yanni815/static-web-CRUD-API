@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
-public class Character{
+public class AnimeCharacter{
     @Id
     private Long id;
     private String name;
@@ -13,9 +13,9 @@ public class Character{
     private String description;
    
 
-    public Character() {}
+    public AnimeCharacter() {}
 
-    public Character(Long id, String name, String anime, String power, String description){
+    public AnimeCharacter(Long id, String name, String anime, String power, String description){
         this.id = id;
         this.name = name;
         this.anime = anime;
