@@ -14,6 +14,10 @@ public class CharacterRepository{
         return characters;
     }
 
+    public void addCharacter(Character character){
+        characters.add(character);
+    }
+
     public Character getCharacterById(Long id){
         for (Character c : characters){
             if(c.getId().equals(id)){
