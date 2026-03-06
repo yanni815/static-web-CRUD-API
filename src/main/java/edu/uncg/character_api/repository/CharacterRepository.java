@@ -29,7 +29,7 @@ public class CharacterRepository{
 
     public void updateCharacter(Long id, Character updatedCharacter){
         for(int i = 0; i < characters.size(); i++){
-            if(characters.get(i).get(i).getId().equals(id)){
+            if(characters.get(i).getId().equals(id)){
                 characters.set(i, updatedCharacter);
                 return;
             }
