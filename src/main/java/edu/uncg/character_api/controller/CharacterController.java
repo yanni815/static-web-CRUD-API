@@ -33,7 +33,7 @@ public class CharacterController {
     }
 
 
-      @GetMapping("/category/{category}")
+      @GetMapping("/category")
     public List <Character> getCharacterByCategory(@PathVariable String category){
         return repository.findByCategoryIgnoreCase(category);
     }
