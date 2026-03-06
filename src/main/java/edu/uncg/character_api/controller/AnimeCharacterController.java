@@ -33,9 +33,9 @@ public class AnimeCharacterController {
     }
 
 
-    @GetMapping("/category/{category}")
-    public List <AnimeCharacter> getCharacterByCategory(@PathVariable String anime){
-        return service.getbyAnime(anime);
+    @GetMapping("/category/{anime}")
+    public List <AnimeCharacter> searchByCategory(@PathVariable String anime){
+        return service.searchbyCategory(anime);
     }
     @PostMapping
     public AnimeCharacter addCharacter(@RequestBody AnimeCharacter character){

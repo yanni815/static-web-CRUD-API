@@ -36,7 +36,7 @@ public class AnimeCharacterService {
         repository.deleteById(id);
     }
 
-    public List <AnimeCharacter> getbyAnime(String anime){
+    public List <AnimeCharacter> searchbyCategory(String anime){
         return repository.findByAnime(anime);
 
     }
