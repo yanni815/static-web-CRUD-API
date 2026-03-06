@@ -33,7 +33,7 @@ public class AnimeCharacterController {
     }
 
 
-    @GetMapping("/characters/category/{category}")
+    @GetMapping("/category/{category}")
     public List <AnimeCharacter> getCharacterByCategory(@PathVariable String anime){
         return service.getbyAnime(anime);
     }
