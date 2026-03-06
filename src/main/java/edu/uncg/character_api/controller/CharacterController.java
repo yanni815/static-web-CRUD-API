@@ -1,7 +1,7 @@
 package edu.uncg.character_api.controller;
 
 import edu.uncg.character_api.model.Character;
-import edu.uncg.character_api.repository.CharacterRepository;
+import edu.uncg.character_api.service.CharacterService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,46 +11,46 @@ import java.util.List;
 @RequestMapping("/characters")
 public class CharacterController {
 
-    private final CharacterRepository repository;
+    private final CharacterService service;
 
-    public CharacterController(CharacterRepository repository){
-        this.repository = repository;
+    public CharacterController(CharacterService service){
+        this.service = service;
     }
 
     @GetMapping
     public List<Character> getAllCharacters(){
-        return repository.findAll();
+        return service.getAllCharacters();
     }
 
     @GetMapping("/{id}")
     public Character getCharacterById(@PathVariable Long id){
-        return repository.findById(id).orElse(null);
+        return service.getCharacterById(id);
     }
 
       @GetMapping("/search")
     public List <Character> searchCharacters(@RequestParam String name){
-        return repository.findByNameContainingIgnoreCase(name);
+        return service.searchbyName(name);
     }
 
 
-    @GetMapping("/category")
-    public List <Character> getCharacterByCategory(@PathVariable String category){
-        return repository.findByCategoryIgnoreCase(category);
+    @GetMapping("/characters/category/{category}")
+    public List <Character> getCharacterByCategory(@PathVariable String anime){
+        return service.getbyAnime(anime);
     }
     @PostMapping
     public Character addCharacter(@RequestBody Character character){
-         return repository.save(character);
+         return service.createCharacter(character);
     }
 
 @PutMapping("/{id}")
 public Character updateCharacter(@PathVariable Long id, @RequestBody Character character){
     character.setId(id);
-    return repository.save(character);
+    return service.updateCharacter(id,character);
 }
 
 @DeleteMapping("/{id}")
 public void deleteCharacter(@PathVariable Long id){
-    repository.deleteById(id);
+    service.deleteCharacter(id);
 }
 
 }
