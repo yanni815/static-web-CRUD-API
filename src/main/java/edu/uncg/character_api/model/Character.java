@@ -10,16 +10,17 @@ public class Character{
     private String name;
     private String anime;
     private String power;
-    private String imageUrl;
+    private String description;
+   
 
     public Character() {}
 
-    public Character(Long id, String name, String anime, String power, String imageUrl){
+    public Character(Long id, String name, String anime, String power, String description){
         this.id = id;
         this.name = name;
         this.anime = anime;
         this.power = power;
-        this.imageUrl = imageUrl;
+        this.description = description;
     }
 
     public Long getId(){ return id; }
@@ -34,6 +35,6 @@ public class Character{
     public String getPower() { return power; }
     public void setPower(String power) { this.power = power; }
 
-    public String getImageUrl() { return imageUrl; }
-    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 }

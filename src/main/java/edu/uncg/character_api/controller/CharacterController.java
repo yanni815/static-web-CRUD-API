@@ -19,27 +19,28 @@ public class CharacterController {
 
     @GetMapping
     public List<Character> getAllCharacters(){
-        return repository.getAllCharacters();
+        return repository.findAll();
     }
 
      @GetMapping("/{id}")
     public Character getCharacterById(@PathVariable Long id){
-        return repository.getCharacterById(id);
+        return repository.findById(id).orElse(null);
     }
 
     @PostMapping
-    public void addCharacter(@RequestBody Character character){
-        repository.addCharacter(character);
+    public Character addCharacter(@RequestBody Character character){
+         return repository.save(character);
     }
 
 @PutMapping("/{id}")
-public void updateCharacter(@PathVariable Long id, @RequestBody Character character){
-    repository.updateCharacter(id, character);
+public Character updateCharacter(@PathVariable Long id, @RequestBody Character character){
+    character.setId(id);
+    return repository.save(character);
 }
 
 @DeleteMapping("/{id}")
 public void deleteCharacter(@PathVariable Long id){
-    repository.deleteCharacter(id);
+    repository.deleteById(id);
 }
 
 }
