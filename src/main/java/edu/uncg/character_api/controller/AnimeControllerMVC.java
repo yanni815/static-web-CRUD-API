@@ -39,11 +39,6 @@ public class AnimeControllerMVC {
         return "character-create";
     }
 
-    @PostMapping
-    public String createCharacter(AnimeCharacter character){
-        animeCharacterService.createCharacter(character);
-        return "redirect:/characters";
-    }
 
     @GetMapping("/{id}/edit")
     public String showUpdateForm(@PathVariable Long id, Model model){
