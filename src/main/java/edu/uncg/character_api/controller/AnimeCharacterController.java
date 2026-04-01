@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/characters")
+@RequestMapping("/api/characters")
 public class AnimeCharacterController {
 
     private final AnimeCharacterService service;
