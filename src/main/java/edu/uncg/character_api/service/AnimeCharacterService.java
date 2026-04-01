@@ -53,15 +53,15 @@ public AnimeCharacter createCharacter(
         MultipartFile image
 ) {
     String filename = null;
-
+    
     if (image != null && !image.isEmpty()) {
         try {
-            String uploadDir = "C:/uploads/";
+            String uploadDir = System.getProperty("user.home") + "/uploads/";;
 
             filename = System.currentTimeMillis() + "_" + image.getOriginalFilename();
 
-            File dest = new File(uploadDir + filename);
-            image.transferTo(dest);
+           File saveFile = new File(uploadDir + filename);
+            image.transferTo(saveFile);
 
         } catch (IOException e) {
             throw new RuntimeException("Image upload failed", e);
