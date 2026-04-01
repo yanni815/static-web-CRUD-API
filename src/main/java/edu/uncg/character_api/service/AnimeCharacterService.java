@@ -2,9 +2,13 @@ package edu.uncg.character_api.service;
 
 import org.springframework.stereotype.Service;
 import java.util.List;
-
+import java.io.File;
+import java.io.IOException;
+import org.springframework.web.multipart.MultipartFile;
 import edu.uncg.character_api.model.AnimeCharacter;
 import edu.uncg.character_api.repository.AnimeCharacterRepository;
+
+
 
 @Service
 public class AnimeCharacterService {
@@ -23,10 +27,6 @@ public class AnimeCharacterService {
         return repository.findById(id).orElse(null);
     }
 
-    public AnimeCharacter createCharacter(AnimeCharacter character) {
-        return repository.save(character);
-    }
-
     public AnimeCharacter updateCharacter(Long id, AnimeCharacter character) {
         character.setId(id);
         return repository.save(character);
@@ -43,6 +43,38 @@ public class AnimeCharacterService {
 
     public List <AnimeCharacter> searchbyName(String name){
         return repository.findByNameContainingIgnoreCase(name);
-}
+    }
 
+public AnimeCharacter createCharacter(
+        String name,
+        String anime,
+        String power,
+        String description,
+        MultipartFile image
+) {
+    String filename = null;
+
+    if (image != null && !image.isEmpty()) {
+        try {
+            String uploadDir = "C:/uploads/";
+
+            filename = System.currentTimeMillis() + "_" + image.getOriginalFilename();
+
+            File dest = new File(uploadDir + filename);
+            image.transferTo(dest);
+
+        } catch (IOException e) {
+            throw new RuntimeException("Image upload failed", e);
+        }
+    }
+
+    AnimeCharacter character = new AnimeCharacter();
+    character.setName(name);
+    character.setAnime(anime);
+    character.setPower(power);
+    character.setDescription(description);
+    character.setimageUrl("/images/" + filename);
+
+    return repository.save(character);
+}
 }

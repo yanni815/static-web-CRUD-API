@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.ui.Model;
-import java.io.File;
 
 import edu.uncg.character_api.model.AnimeCharacter;
 import edu.uncg.character_api.service.AnimeCharacterService;
@@ -66,23 +65,7 @@ public String createCharacter(
         @RequestParam("description") String description,
         @RequestParam("image") MultipartFile imageFile
 ) throws IOException {
-
-    String fileName = System.currentTimeMillis() + "_" + imageFile.getOriginalFilename();
-
-    String uploadDir = "src/main/resources/static/images/";
-
-    File saveFile = new File(uploadDir + fileName);
-    imageFile.transferTo(saveFile);
-
-    AnimeCharacter character = new AnimeCharacter();
-    character.setName(name);
-    character.setAnime(anime);
-    character.setPower(power);
-    character.setDescription(description);
-    character.setimageUrl("/images/" + fileName);
-
-    animeCharacterService.createCharacter(character);
-
+    animeCharacterService.createCharacter(name, anime, power, description, imageFile);
     return "redirect:/characters";
 }
 

@@ -2,15 +2,19 @@ package edu.uncg.character_api.controller;
 
 import edu.uncg.character_api.model.AnimeCharacter;
 import edu.uncg.character_api.service.AnimeCharacterService;
-import org.springframework.web.bind.annotation.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 
 @RestController
 @RequestMapping("/api/characters")
 public class AnimeCharacterController {
-
+    @Autowired
+    private AnimeCharacterService animeCharacterService;
+    
     private final AnimeCharacterService service;
 
     public AnimeCharacterController(AnimeCharacterService service){
@@ -38,9 +42,18 @@ public class AnimeCharacterController {
         return service.searchbyCategory(anime);
     }
     @PostMapping
-    public AnimeCharacter addCharacter(@RequestBody AnimeCharacter character){
-         return service.createCharacter(character);
-    }
+    public String createCharacter(
+        @RequestParam String name,
+        @RequestParam String anime,
+        @RequestParam String power,
+        @RequestParam String description,
+        @RequestParam MultipartFile imageFile
+) {
+    animeCharacterService.createCharacter(name, anime, power, description, imageFile);
+    return "redirect:/characters";
+}
+    
+    
 
 @PutMapping("/{id}")
 public AnimeCharacter updateCharacter(@PathVariable Long id, @RequestBody AnimeCharacter character){

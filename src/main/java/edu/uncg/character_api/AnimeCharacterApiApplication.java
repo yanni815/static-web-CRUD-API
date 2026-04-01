@@ -10,4 +10,6 @@ public class AnimeCharacterApiApplication {
 		SpringApplication.run(AnimeCharacterApiApplication.class, args);
 	}
 
+	
+
 }
