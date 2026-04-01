@@ -10,8 +10,11 @@
         <label>Name:</label>
         <input type="text" name="name" required><br>
 
-        <label>Age:</label>
-        <input type="number" name="age"><br>
+        <label>Anime:</label>
+        <input type="number" name="anime"><br>
+        
+        <label>Power:</label>
+        <input type="number" name="power"><br>
 
         <label>Description:</label>
         <textarea name="description"></textarea><br>
