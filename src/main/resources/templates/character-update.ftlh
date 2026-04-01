@@ -26,6 +26,9 @@
     <br>
     <a href="/characters">Back</a>
 
+    <label>Change Image:</label>
+    <input type="file" name="image">
+
 </div>
 
 </body>

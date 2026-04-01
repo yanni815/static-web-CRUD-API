@@ -9,6 +9,7 @@
 <div class="container">
 
     <h1>${character.name}</h1>
+    <img src="${character.imageUrl}" width="200" style="border-radius: 12px;">
 
     <!-- Info Card -->
     <div class="card">
@@ -22,7 +23,7 @@
 
     <!-- Description Card -->
     <div class="card">
-        <p>${character.description}</p>
+        <p><strong>Description:</strong> ${character.description}</p>
     </div>
 
     <!-- Action Buttons -->
@@ -45,6 +46,8 @@
     </div>
 
 </div>
+
+
 
 </body>
 </html>

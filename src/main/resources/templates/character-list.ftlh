@@ -26,5 +26,15 @@
 
 </div>
 
+<div class="card">
+
+    <img src="${character.imageUrl}" width="80" height="80" style="border-radius: 10px;">
+
+    <a href="/characters/${character.id}">
+        ${character.name}
+    </a>
+
+</div>
+
 </body>
-</html>
+</div>

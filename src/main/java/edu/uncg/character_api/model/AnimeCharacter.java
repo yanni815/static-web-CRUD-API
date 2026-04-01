@@ -11,6 +11,7 @@ public class AnimeCharacter{
     private String anime;
     private String power;
     private String description;
+    private String imageUrl;
    
 
     public AnimeCharacter() {}
@@ -37,4 +38,13 @@ public class AnimeCharacter{
 
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
+
+     public String getimageUrl() { return imageUrl; }
+    public void setimageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+
+   
+    
+
 }
+
+
