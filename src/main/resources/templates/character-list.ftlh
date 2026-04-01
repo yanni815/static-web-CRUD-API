@@ -15,6 +15,16 @@
                     ${character.name}
                 </a>
             </li>
+
+<li>
+    <a href="/characters/${character.id}">
+        ${character.name}
+    </a>
+
+    <form action="/characters/${character.id}/delete" method="post" style="display:inline;">
+        <button type="submit">Delete</button>
+    </form>
+</li>
         </#list>
     </ul>
 </body>

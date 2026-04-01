@@ -12,8 +12,12 @@
         <label>Name:</label>
         <input type="text" name="name" value="${character.name}" required><br>
 
-        <label>Age:</label>
-        <input type="number" name="age" value="${character.age}"><br>
+        <label>Anime:</label>
+        <input type="number" name="anime" value="${character.anime}"><br>
+
+        <label>Power:</label>
+        <input type="number" name="power" value="${character.power}"><br>
+
 
         <label>Description:</label>
         <textarea name="description">${character.description}</textarea><br>
