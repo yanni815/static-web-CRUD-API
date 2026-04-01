@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.ui.Model;
-import org.springframework.web.service.registry.ImportHttpServices.Container;
 import java.io.File;
 
 import edu.uncg.character_api.model.AnimeCharacter;
@@ -75,7 +74,7 @@ public String createCharacter(
 
     String fileName = System.currentTimeMillis() + "_" + imageFile.getOriginalFilename();
 
-    String uploadDir = "src/main/resources/static/uploads/";
+    String uploadDir = "src/main/resources/static/images/";
 
     File saveFile = new File(uploadDir + fileName);
     imageFile.transferTo(saveFile);
