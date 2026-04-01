@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Update Character</title>
+    <title>Character Details</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <h1>Update Character</h1>
 
-    <form action="/characters/${character.id}" method="post">
-        <input type="hidden" name="_method" value="put">
+<div class="container">
 
-        <label>Name:</label>
-        <input type="text" name="name" value="${character.name}" required><br>
+    <h1>${character.name}</h1>
 
-        <label>Anime:</label>
-        <input type="number" name="anime" value="${character.anime}"><br>
+    <div class="card">
+        <p><strong>Anime:</strong> ${character.anime}</p>
+    </div>
 
-        <label>Power:</label>
-        <input type="number" name="power" value="${character.power}"><br>
+      <div class="card">
+        <p><strong>Power:</strong> ${character.power}</p>
+    </div>
 
+    <div class="card">
+        <p>${character.description}</p>
+    </div>
 
-        <label>Description:</label>
-        <textarea name="description">${character.description}</textarea><br>
+    <a href="/characters/${character.id}/edit">Edit</a>
+    <br>
+    <a href="/characters">Back</a>
 
-        <button type="submit">Update</button>
-    </form>
+</div>
 
-    <a href="/characters/${character.id}">Cancel</a>
 </body>
 </html>
