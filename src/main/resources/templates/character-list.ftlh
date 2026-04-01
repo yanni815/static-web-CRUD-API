@@ -6,7 +6,7 @@
 <body>
     <h1>Characters</h1>
 
-    <a href="/characters/new">Create New Character</a>
+    <a href="/characters/create">Create New Character</a>
 
     <ul>
         <#list characters as character>
