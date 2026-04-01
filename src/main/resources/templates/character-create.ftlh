@@ -11,10 +11,10 @@
         <input type="text" name="name" required><br>
 
         <label>Anime:</label>
-        <input type="number" name="anime"><br>
+        <input type="text" name="anime"><br>
         
         <label>Power:</label>
-        <input type="number" name="power"><br>
+        <input type="text" name="power"><br>
 
         <label>Description:</label>
         <textarea name="description"></textarea><br>
