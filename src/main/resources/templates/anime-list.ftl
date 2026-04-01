@@ -1,9 +1,10 @@
-<h1>Anime Gallery</h1>
+<h1>Anime Characters</h1>
+
 <ul>
-<#list animeList as anime>
-    <li>$
-    <a href="/anime/${anime.id}">
-    ${anime.title} 
+<#list animeList as characters>
+    <li>
+    <a href="/characters/${character.id}">
+    ${character.name} 
     </a>
     </li>
 </#list>

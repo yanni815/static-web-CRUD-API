@@ -11,20 +11,20 @@ import org.springframework.web.service.registry.ImportHttpServices.Container;
 import edu.uncg.character_api.service.AnimeCharacterService;
 
 @Controller
-@RequestMapping("/anime")
+@RequestMapping("/characters")
 public class AnimeControllerMVC {
     @Autowired
     private AnimeCharacterService animeCharacterService;
 
     @GetMapping
-    public String getAllAnime(Model model){
-        model.addAttribute("animeList", animeCharacterService.getAllCharacters());
-        return "anime-list";
+    public String getAllCharacters(Model model){
+        model.addAttribute("characterList", animeCharacterService.getAllCharacters());
+        return "character-list";
     }
 
     @GetMapping("/{id}")
-    public String getAnimeById(@PathVariable Long id, Model model){
-        model.addAttribute("anime", animeCharacterService.getCharacterById(id));
-        return "anime-details";
+    public String getCharacterById(@PathVariable Long id, Model model){
+        model.addAttribute("character", animeCharacterService.getCharacterById(id));
+        return "character-details";
     }
 }
