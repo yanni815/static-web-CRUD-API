@@ -24,7 +24,7 @@ public class AnimeControllerMVC {
 
     @GetMapping
     public String getAllCharacters(Model model){
-        model.addAttribute("characters", animeCharacterService.getAllCharacters());
+        model.addAttribute("characterList", animeCharacterService.getAllCharacters());
         return "character-list";
     }
 
