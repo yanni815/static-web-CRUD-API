@@ -39,8 +39,8 @@ public class AnimeCharacter{
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 
-     public String getimageUrl() { return ImageUrl; }
-    public void setimageUrl(String imageUrl) { this.ImageUrl = imageUrl; }
+     public String getImageUrl() { return ImageUrl; }
+    public void setImageUrl(String imageUrl) { this.ImageUrl = imageUrl; }
 
    
     

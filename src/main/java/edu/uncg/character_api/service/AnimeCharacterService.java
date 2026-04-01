@@ -73,7 +73,7 @@ public AnimeCharacter createCharacter(
     character.setAnime(anime);
     character.setPower(power);
     character.setDescription(description);
-    character.setimageUrl("/images/" + filename);
+    character.setImageUrl("/images/" + filename);
 
     return repository.save(character);
 }
