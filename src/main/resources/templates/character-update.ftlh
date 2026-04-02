@@ -23,9 +23,8 @@
     </div>
 
  <a href="/characters/${character.id}/edit">Edit</a>
- 
+
 <form action="/characters/${character.id}" method="post">
-    <button type="submit">Save</button>
 </form>
      <form action="/characters/${character.id}" method="post">
     <input type="text" name="name" value="${character.name}">

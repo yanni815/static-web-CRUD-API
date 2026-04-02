@@ -46,7 +46,12 @@ public class AnimeControllerMVC {
     }
 
     @PostMapping("/{id}")
-    public String updateCharacter(@PathVariable Long id, AnimeCharacter character) {
+    public String updateCharacter(@PathVariable Long id, @RequestParam String name, @RequestParam String anime, @RequestParam String power, @RequestParam String description) {
+       AnimeCharacter character = new AnimeCharacter();
+       character.setName(name);
+       character.setAnime(anime);
+       character.setPower(power);
+       character.setDescription(description);
         animeCharacterService.updateCharacter(id, character);
         return "redirect:/characters/" + id;
     }
