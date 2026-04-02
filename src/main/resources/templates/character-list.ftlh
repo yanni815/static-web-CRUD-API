@@ -30,10 +30,9 @@
             </form>
 
         </div>
-
     </#list>
 
-</div>
+
 
 </body>
 </html>
