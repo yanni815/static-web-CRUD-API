@@ -55,8 +55,8 @@ public class AnimeCharacterController {
     
     
 
-@PutMapping("/{id}")
-public AnimeCharacter updateCharacter(@PathVariable Long id, @RequestBody AnimeCharacter character){
+@PostMapping("/{id}")
+public AnimeCharacter updateCharacter(@PathVariable Long id, AnimeCharacter character){
     character.setId(id);
     return service.updateCharacter(id,character);
 }

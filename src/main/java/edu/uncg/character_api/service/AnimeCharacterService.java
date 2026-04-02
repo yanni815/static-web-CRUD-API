@@ -27,9 +27,15 @@ public class AnimeCharacterService {
         return repository.findById(id).orElse(null);
     }
 
-    public AnimeCharacter updateCharacter(Long id, AnimeCharacter character) {
-        character.setId(id);
-        return repository.save(character);
+    public AnimeCharacter updateCharacter(Long id, AnimeCharacter updated) {
+         AnimeCharacter existing = repository.findById(id).orElseThrow();
+
+    existing.setName(updated.getName());
+    existing.setAnime(updated.getAnime());
+    existing.setPower(updated.getPower());
+    existing.setDescription(updated.getDescription());
+
+        return repository.save(updated);
     }
 
     public void deleteCharacter(Long id) {

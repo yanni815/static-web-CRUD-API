@@ -25,8 +25,7 @@
  <a href="/characters/${character.id}/edit">Edit</a>
 
 <form action="/characters/${character.id}" method="post">
-</form>
-     <form action="/characters/${character.id}" method="post">
+
     <input type="text" name="name" value="${character.name}">
     <input type="text" name="anime" value="${character.anime}">
     <input type="text" name="power" value="${character.power}">
