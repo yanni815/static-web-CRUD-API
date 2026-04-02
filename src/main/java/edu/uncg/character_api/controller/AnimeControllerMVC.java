@@ -62,10 +62,10 @@ public class AnimeControllerMVC {
         return "redirect:/characters/" + id;
     }
 
-    @PostMapping("/save")
+    @PostMapping
     public String saveCharacter(AnimeCharacter character){
         animeCharacterRepository.save(character);
-        return "redirect:/api/characters";
+        return "redirect:/characters";
     }
 
      @PostMapping("/{id}/delete")
