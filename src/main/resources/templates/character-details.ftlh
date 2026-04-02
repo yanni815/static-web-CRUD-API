@@ -33,8 +33,7 @@
     <div style="margin-top: 20px; text-align: center;">
         <a href="/characters/${character.id}/edit" class="edit-btn">✏️ 
             Edit Character
-             <form action="/characters/${character.id}" method="post"
-             <button type="submit">Save</button>
+    
         </a>
         <br><br>
 
