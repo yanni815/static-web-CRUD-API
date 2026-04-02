@@ -22,9 +22,19 @@
         <p>${character.description}</p>
     </div>
 
-    <a href="/characters/${character.id}/edit">Edit</a>
-      <form action="/characters/${character.id}" method="post"
-             <button type="submit">Save</button>
+ <a href="/characters/${character.id}/edit">Edit</a>
+ 
+<form action="/characters/${character.id}" method="post">
+    <button type="submit">Save</button>
+</form>
+     <form action="/characters/${character.id}" method="post">
+    <input type="text" name="name" value="${character.name}">
+    <input type="text" name="anime" value="${character.anime}">
+    <input type="text" name="power" value="${character.power}">
+    <input type="text" name="description" value="${character.description}">
+
+    <button type="submit">Save</button>
+</form>
     <br>
     <a href="/characters">Back</a>
 
