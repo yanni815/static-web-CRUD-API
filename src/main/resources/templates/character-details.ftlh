@@ -11,11 +11,6 @@
     <h1>${character.name}</h1>
     <img src="${character.imageUrl}" width="200" style="border-radius: 12px;">
 
-<#if character.imageUrl??>
-    <img src="${character.imageUrl}" width="200">
-<#else>
-    <p>No image uploaded</p>
-</#if>
 
 <p>${character.description!""}</p>
 
