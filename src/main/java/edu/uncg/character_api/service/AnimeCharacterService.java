@@ -56,7 +56,7 @@ public AnimeCharacter createCharacter(
     
     if (image != null && !image.isEmpty()) {
         try {
-            String uploadDir = System.getProperty("user.home") + "/uploads/";;
+            String uploadDir = System.getProperty("user.home") + "/uploads/";
 
             filename = System.currentTimeMillis() + "_" + image.getOriginalFilename();
 
