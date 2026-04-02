@@ -31,6 +31,13 @@
     <input type="text" name="power" value="${character.power}">
     <input type="text" name="description" value="${character.description}">
 
+<form action="/api/characters/save" method="post">
+    <input type="hidden" name="id" value="${character.id}"/>
+    
+    <input type="text" name="anime" value="${character.anime}"/>
+    <input type="text" name="power" value="${character.power}"/>
+    <input type="text" name="description" value="${character.description}"/>
+
     <button type="submit">Save</button>
 </form>
     <br>

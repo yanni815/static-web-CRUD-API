@@ -13,11 +13,17 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.ui.Model;
 
 import edu.uncg.character_api.model.AnimeCharacter;
+import edu.uncg.character_api.repository.AnimeCharacterRepository;
 import edu.uncg.character_api.service.AnimeCharacterService;
 
 @Controller
 @RequestMapping("/characters")
 public class AnimeControllerMVC {
+    private final AnimeCharacterRepository animeCharacterRepository;
+    
+    public AnimeControllerMVC(AnimeCharacterRepository animeCharacterRepository){
+        this.animeCharacterRepository = animeCharacterRepository;
+    }
     @Autowired
     private AnimeCharacterService animeCharacterService;
 
@@ -54,6 +60,12 @@ public class AnimeControllerMVC {
        character.setDescription(description);
         animeCharacterService.updateCharacter(id, character);
         return "redirect:/characters/" + id;
+    }
+
+    @PostMapping("/save")
+    public String saveCharacter(AnimeCharacter character){
+        animeCharacterRepository.save(character);
+        return "redirect:/api/characters";
     }
 
      @PostMapping("/{id}/delete")
