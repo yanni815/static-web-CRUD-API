@@ -22,7 +22,7 @@
             </#if>
 
             <a href="/characters/${character.id}">
-                ${character.name}
+                 ${character.name!"Unknown"}
             </a>
 
             <form action="/characters/${character.id}/delete" method="post">
