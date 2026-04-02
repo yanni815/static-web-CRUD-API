@@ -31,7 +31,10 @@
 
     <!-- Action Buttons -->
     <div style="margin-top: 20px; text-align: center;">
-        <a href="/characters/${character.id}/edit">✏️ Edit</a>
+        <a href="/characters/${character.id}/edit" class="edit-btn">✏️ 
+            Edit Character
+
+        </a>
         <br><br>
 
         <form action="/characters/${character.id}/delete" method="post"
