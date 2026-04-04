@@ -1,5 +1,6 @@
 package edu.uncg.character_api.model;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +17,9 @@ public class AnimeCharacter{
     private String power;
     private String description;
     private String imageUrl;
-   
+    private String imagePath;
+
+ 
 
     public AnimeCharacter() {}
 
@@ -45,4 +48,13 @@ public class AnimeCharacter{
 
      public String getImageUrl() { return imageUrl; }
     public void setImageUrl(String imageUrl) { this.imageUrl=imageUrl; }
+
+    public String getImagePath(){
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath){
+        this.imagePath = imagePath;
+    }
+   
 }

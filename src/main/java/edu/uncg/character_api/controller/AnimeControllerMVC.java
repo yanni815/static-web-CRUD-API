@@ -1,7 +1,9 @@
 package edu.uncg.character_api.controller;
 
 import java.io.IOException;
-
+import java.nio.file.Paths;
+import java.nio.file.Path;
+import java.nio.file.Files;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,16 +53,7 @@ public class AnimeControllerMVC {
         return "character-update";
     }
 
-    @PostMapping("/{id}")
-    public String updateCharacter(@PathVariable Long id, @RequestParam String name, @RequestParam String anime, @RequestParam String power, @RequestParam String description) {
-       AnimeCharacter character = new AnimeCharacter();
-       character.setName(name);
-       character.setAnime(anime);
-       character.setPower(power);
-       character.setDescription(description);
-        animeCharacterService.updateCharacter(id, character);
-        return "redirect:/characters/" + id;
-    }
+   
 
     @PostMapping
     public String saveCharacter(AnimeCharacter character){
@@ -74,16 +67,42 @@ public class AnimeControllerMVC {
         return "redirect:/characters";
     }
 
-@PostMapping
-public String createCharacter(
-        @RequestParam("name") String name,
-        @RequestParam("anime") String anime,
-        @RequestParam("power")String power,
-        @RequestParam("description") String description,
-        @RequestParam("image") MultipartFile imageFile
-) throws IOException {
-    animeCharacterService.createCharacter(name, anime, power, description, imageFile);
-    return "redirect:/characters";
-}
+
+@PostMapping("/save")
+    public String saveCharacter(
+            @RequestParam(required = false) Long id,
+            @RequestParam String name,
+            @RequestParam String anime,
+            @RequestParam String power,
+            @RequestParam String description,
+            @RequestParam(required = false) MultipartFile imageFile
+    ) throws IOException {
+
+        
+        if (id != null) {
+            // UPDATE
+            AnimeCharacter character = animeCharacterService.getCharacterById(id);
+
+            character.setName(name);
+            character.setAnime(anime);
+            character.setPower(power);
+            character.setDescription(description);
+
+            if (imageFile != null && !imageFile.isEmpty()) {
+                String filename = imageFile.getOriginalFilename();
+                Path uploadPath = Paths.get("/uploads/" + filename);
+                Files.write(uploadPath, imageFile.getBytes());
+                character.setImagePath("/uploads/" + filename);
+            }
+            
+            animeCharacterRepository.save(character);
+        } else {
+            // CREATE
+            animeCharacterService.createCharacter( name, anime, power, description, imageFile);
+        }
+
+       
+        return "redirect:/characters";
+    }
 
 }
