@@ -24,16 +24,15 @@
 
  <a href="/characters/${character.id}/edit">Edit</a>
 
-<form action="/save" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="id" value="${character.id}"/>
+<form action="/characters/save" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="${character.id}">
 
     <input type="text" name="name" value="${character.name}"/>
     <input type="text" name="anime" value="${character.anime}"/>
     <input type="text" name="power" value="${character.power}"/>
     <input type="text" name="description" value="${character.description}"/>
     
-    <input type="file" name="imageFile"/>
-
+   
    
 
     <button type="submit">Save</button>

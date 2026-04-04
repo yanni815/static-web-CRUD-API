@@ -21,23 +21,26 @@ import edu.uncg.character_api.service.AnimeCharacterService;
 @Controller
 @RequestMapping("/characters")
 public class AnimeControllerMVC {
-    private final AnimeCharacterRepository animeCharacterRepository;
+     @Autowired
+    private final AnimeCharacterRepository repository;
+      private final AnimeCharacterService service;
     
-    public AnimeControllerMVC(AnimeCharacterRepository animeCharacterRepository){
-        this.animeCharacterRepository = animeCharacterRepository;
+    public AnimeControllerMVC(AnimeCharacterRepository repository, AnimeCharacterService service ){
+        this.repository = repository;
+        this.service = service;
     }
-    @Autowired
-    private AnimeCharacterService animeCharacterService;
+   
+   
 
     @GetMapping
     public String getAllCharacters(Model model){
-        model.addAttribute("characterList", animeCharacterService.getAllCharacters());
+        model.addAttribute("characterList", service.getAllCharacters());
         return "character-list";
     }
 
     @GetMapping("/{id}")
     public String getCharacterById(@PathVariable Long id, Model model){
-        model.addAttribute("character", animeCharacterService.getCharacterById(id));
+        model.addAttribute("character", service.getCharacterById(id));
         return "character-details";
     }
 
@@ -49,60 +52,61 @@ public class AnimeControllerMVC {
 
     @GetMapping("/{id}/edit")
     public String showUpdateForm(@PathVariable Long id, Model model){
-        model.addAttribute("character", animeCharacterService.getCharacterById(id));
+        model.addAttribute("character", service.getCharacterById(id));
         return "character-update";
     }
 
-   
-
-    @PostMapping
-    public String saveCharacter(AnimeCharacter character){
-        animeCharacterRepository.save(character);
-        return "redirect:/characters";
-    }
 
      @PostMapping("/{id}/delete")
     public String deleteCharacter(@PathVariable Long id) {
-        animeCharacterService.deleteCharacter(id);
+        service.deleteCharacter(id);
         return "redirect:/characters";
+    
     }
-
 
 @PostMapping("/save")
-    public String saveCharacter(
-            @RequestParam(required = false) Long id,
-            @RequestParam String name,
-            @RequestParam String anime,
-            @RequestParam String power,
-            @RequestParam String description,
-            @RequestParam(required = false) MultipartFile imageFile
-    ) throws IOException {
+public String saveCharacter(
+        @RequestParam(required = false) Long id,
+        @RequestParam String name,
+        @RequestParam String anime,
+        @RequestParam String power,
+        @RequestParam String description,
+        @RequestParam MultipartFile imageFile
+) throws IOException {
 
-        
-        if (id != null) {
-            // UPDATE
-            AnimeCharacter character = animeCharacterService.getCharacterById(id);
+    AnimeCharacter character;
 
-            character.setName(name);
-            character.setAnime(anime);
-            character.setPower(power);
-            character.setDescription(description);
-
-            if (imageFile != null && !imageFile.isEmpty()) {
-                String filename = imageFile.getOriginalFilename();
-                Path uploadPath = Paths.get("/uploads/" + filename);
-                Files.write(uploadPath, imageFile.getBytes());
-                character.setImagePath("/uploads/" + filename);
-            }
-            
-            animeCharacterRepository.save(character);
-        } else {
-            // CREATE
-            animeCharacterService.createCharacter( name, anime, power, description, imageFile);
-        }
-
-       
-        return "redirect:/characters";
+    if (id != null) {
+        character = service.getCharacterById(id);
+    } else {
+        character = new AnimeCharacter();
     }
+
+    character.setName(name);
+    character.setAnime(anime);
+    character.setPower(power);
+    character.setDescription(description);
+
+    // ONLY handle image if new file is uploaded
+    if (imageFile != null && !imageFile.isEmpty()) {
+
+        String filename = System.currentTimeMillis() + "_" + imageFile.getOriginalFilename();
+
+        Path uploadDir = Paths.get(System.getProperty("user.dir"), "uploads");
+        Files.createDirectories(uploadDir);
+
+        Path filePath = uploadDir.resolve(filename);
+        Files.write(filePath, imageFile.getBytes());
+
+        character.setImageUrl("/uploads/" + filename);
+    }
+
+      if (id == null) {
+            service.createCharacter(character);
+        } else {
+            service.updateCharacter(id, character);
+        }
+    return "redirect:/characters" ;
+}
 
 }

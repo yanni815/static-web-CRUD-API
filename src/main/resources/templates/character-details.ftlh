@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Character Details</title>
+    <title>Character Detail
+s</title>
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -9,10 +10,8 @@
 <div class="container">
 
     <h1>${character.name}</h1>
-    <img src="${character.imageUrl}" width="200" style="border-radius: 12px;">
+    <img src="${character.imageUrl?if_exists}" width="200" style="border-radius: 12px;">
 
-
-<p>${character.description!""}</p>
 
     <!-- Info Card -->
     <div class="card">

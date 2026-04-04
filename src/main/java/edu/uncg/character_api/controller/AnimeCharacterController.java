@@ -6,6 +6,11 @@ import edu.uncg.character_api.service.AnimeCharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.util.List;
 
 
@@ -13,8 +18,6 @@ import java.util.List;
 @RequestMapping("/api/characters")
 public class AnimeCharacterController {
     @Autowired
-    private AnimeCharacterService animeCharacterService;
-    
     private final AnimeCharacterService service;
 
     public AnimeCharacterController(AnimeCharacterService service){
@@ -42,22 +45,41 @@ public class AnimeCharacterController {
         return service.searchbyCategory(anime);
     }
     @PostMapping
-    public String createCharacter(
+    public AnimeCharacter createCharacter(
+        @RequestParam(required = false) Long id,
         @RequestParam String name,
         @RequestParam String anime,
         @RequestParam String power,
         @RequestParam String description,
         @RequestParam MultipartFile imageFile
-) {
-    animeCharacterService.createCharacter(name, anime, power, description, imageFile);
-    return "redirect:/characters";
-}
-    
-    
+) throws IOException {
 
-@PostMapping("/{id}")
+    AnimeCharacter character = new AnimeCharacter();
+
+character.setName(name);
+character.setAnime(anime);
+character.setPower(power);
+character.setDescription(description);
+
+// only set image if provided
+if (imageFile != null && !imageFile.isEmpty()) {
+
+    String filename = System.currentTimeMillis() + "_" + imageFile.getOriginalFilename();
+
+    Path uploadDir = Paths.get(System.getProperty("user.dir"), "uploads");
+    Files.createDirectories(uploadDir);
+
+    Path filePath = uploadDir.resolve(filename);
+    Files.write(filePath, imageFile.getBytes());
+
+    character.setImageUrl("/uploads/" + filename);
+}
+  return service.createCharacter(character);
+}
+
+
+@PutMapping("/{id}")
 public AnimeCharacter updateCharacter(@PathVariable Long id, AnimeCharacter character){
-    character.setId(id);
     return service.updateCharacter(id,character);
 }
 

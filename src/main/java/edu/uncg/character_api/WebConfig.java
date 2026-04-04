@@ -1,15 +1,20 @@
-package edu.uncg.character_api.config.config;
+package edu.uncg.character_api;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import java.nio.file.Paths;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/images/**")
-                .addResourceLocations("file:" + System.getProperty("user.home") + "/uploads/");
+        String uploadPath = Paths.get(System.getProperty("user.dir") + "/uploads/")
+        .toAbsolutePath()
+        .toUri()
+        .toString();
+        registry.addResourceHandler("/uploads/**")
+                .addResourceLocations(uploadPath);
     }
 }
