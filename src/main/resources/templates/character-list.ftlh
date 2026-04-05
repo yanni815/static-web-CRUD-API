@@ -97,14 +97,14 @@
             padding: 8px 12px;
             border: none;
             border-radius: 8px;
-            background: #ef4444;
+            background: #8a1df8;
             color: white;
             cursor: pointer;
             transition: 0.3s;
         }
 
         button:hover {
-            background: #dc2626;
+            background: #b667ff;
             transform: scale(1.05);
         }
     </style>
