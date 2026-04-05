@@ -52,9 +52,17 @@ public class AnimeControllerMVC {
 
     @GetMapping("/{id}/edit")
     public String showUpdateForm(@PathVariable Long id, Model model){
-        model.addAttribute("character", service.getCharacterById(id));
-        return "character-update";
+       AnimeCharacter character = service.getCharacterById(id);
+
+    if (character == null) {
+        return "redirect:/characters"; // or error page
     }
+
+    model.addAttribute("character", character);
+    return "character-update";
+}
+       
+        
 
 
      @PostMapping("/{id}/delete")
@@ -78,6 +86,10 @@ public String saveCharacter(
 
     if (id != null) {
         character = service.getCharacterById(id);
+
+    if(character == null){
+        return "redirect:/characters";
+        }
     } else {
         character = new AnimeCharacter();
     }
