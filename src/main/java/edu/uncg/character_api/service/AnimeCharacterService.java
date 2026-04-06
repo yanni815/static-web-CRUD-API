@@ -27,9 +27,15 @@ public class AnimeCharacterService {
         return repository.save(character);
     }
 
-    public AnimeCharacter updateCharacter(Long id, AnimeCharacter character) {
-        character.setId(id);
-        return repository.save(character);
+    public AnimeCharacter updateCharacter(Long id, AnimeCharacter updated) {
+         AnimeCharacter existing = getCharacterById(id);
+
+        existing.setName(updated.getName());
+        existing.setAnime(updated.getAnime());
+        existing.setPower(updated.getPower());
+        existing.setDescription(updated.getDescription());
+        
+        return repository.save(existing);
     }
 
     public void deleteCharacter(Long id) {
@@ -43,6 +49,7 @@ public class AnimeCharacterService {
 
     public List <AnimeCharacter> searchbyName(String name){
         return repository.findByNameContainingIgnoreCase(name);
-}
 
+    
+}
 }
